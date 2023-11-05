@@ -3,13 +3,15 @@ from tkinter import ttk
 
 
 class App(tk.Tk):
-    def __init__(self):
+    def __init__(self, title, size):
         super().__init__()
-        self.title("Droplet Generator Calculator")
-        self.geometry("600x600")
+        self.title(title)
+        style = ttk.Style(self)
+        style.theme_use
+        self.geometry(f"{size[0]}x{size[1]}")
         self.minsize(600, 600)
 
         self.mainloop()
 
 
-App()
+App("Droplet Generator Calculator", (600, 600))
