@@ -1,6 +1,9 @@
+import tkinter as tk
 from tkinter import ttk
 
 import openpyxl
+
+DATA = "/Users/daster/Documents/DNT Local/OFS/Dev/FlowCalculatorClasses/DataLog.xlsx"
 
 
 class DataFrame(ttk.Frame):
@@ -17,25 +20,31 @@ class DataFrame(ttk.Frame):
         dataTreeView = ttk.Treeview(
             self, show="headings", yscrollcommand=dataScroll.set, columns=cols, height=6
         )
-        dataTreeView.column("Index", width=30)
+        dataTreeView.column("Index", width=50)
         dataTreeView.column("Name", width=100)
-        dataTreeView.column("Density", width=70)
-        dataTreeView.column("Viscosity", width=70)
+        dataTreeView.column("Density", width=100)
+        dataTreeView.column("Viscosity", width=100)
 
         dataTreeView.pack()
         dataScroll.config(command=dataTreeView.yview)
 
-        # # Loading the data
-        # path = "/Users/daster/Documents/DNT Local/OFS/Dev/FlowCalculatorClasses/DataLog.xlsx"
-        # workbook = openpyxl.load_workbook(path)
-        # sheet = workbook.active
+        self.loadData(dataTreeView)
 
-        # list_values = list(sheet.values)
-
-        # # Load the Column Names
-        # for col_name in list_values[0]:
-        #     dataTreeView.heading(col_name, text=col_name)
-
-        # # Load the data values
+        # Load the data values
         # for value_tuple in list_values[1:]:
-        #     dataTreeView.insert("", self.tk.END, values=value_tuple)
+        # dataTreeView.insert("", self.tk.END, values=value_tuple)
+
+    def loadData(self, treeView):
+        # Loading the data
+        workbook = openpyxl.load_workbook(DATA)
+        sheet = workbook.active
+        list_values = list(sheet.values)
+        print(list_values)
+
+        # Load the Column Names
+        for col_name in list_values[0]:
+            treeView.heading(col_name, text=col_name)
+
+        # Load the data values
+        for value_tuple in list_values[1:]:
+            treeView.insert("", tk.END, values=value_tuple)  # Load the
