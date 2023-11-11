@@ -3,6 +3,9 @@
 import customtkinter as ctk
 from PIL import Image, ImageTk
 
+ctk.set_appearance_mode("dark")
+ctk.set_default_color_theme("dark-blue")
+
 from ui import (
     BackGroundFrame,
     DataFrame,
@@ -10,6 +13,7 @@ from ui import (
     MainFrame,
     PhasesFrame,
     ResultsFrame,
+    SystemValues,
 )
 
 
@@ -40,8 +44,11 @@ class App(ctk.CTk):
         self.expectedFrame = ExpectedValuesFrame(self.menuFrame, "THEORETICAL VALUES")
         # Data Log frame
         self.dataFrame = DataFrame(self.menuFrame)
-        # RESULTS Frame
+        # System values Frame
+        self.systemValues = SystemValues(self.menuFrame, "SYSTEM VALUES")
+        # Results FRAME
         self.resultsFrame = ResultsFrame(self.menuFrame, "RESULTS")
+
         self.mainloop()
 
 

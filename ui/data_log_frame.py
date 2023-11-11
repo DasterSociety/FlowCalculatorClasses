@@ -10,7 +10,7 @@ DATA = "/Users/daster/Documents/DNT Local/OFS/Dev/FlowCalculatorClasses/DataLog.
 class DataFrame(ctk.CTkFrame):
     def __init__(self, parent):
         super().__init__(parent)
-        self.grid(row=0, column=1, padx=10, pady=10)
+        self.grid(row=0, column=1, columnspan=2, padx=10, pady=10)
 
         # Adding the scroll bar
         dataScroll = ttk.Scrollbar(self)
