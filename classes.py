@@ -41,12 +41,16 @@ class App(ctk.CTk):
         # Create the Main Frame
         self.menuFrame = MainFrame(self)
 
+        # Data Log frame
+        self.dataFrame = DataFrame(self.menuFrame, (0, 1))
+
         # Create the Phases Frame
-        self.phasesFrame = PhasesFrame(self.menuFrame, "PHASES FRAME")
+        self.phasesFrame = PhasesFrame(
+            self.menuFrame, (0, 0), "PHASES FRAME", self.dataFrame
+        )
         # Expected Values Frame
         self.expectedFrame = ExpectedValuesFrame(self.menuFrame, "THEORETICAL VALUES")
-        # Data Log frame
-        self.dataFrame = DataFrame(self.menuFrame)
+
         # System values Frame
         self.systemValues = SystemValues(self.menuFrame, "SYSTEM VALUES")
         # Results FRAME
