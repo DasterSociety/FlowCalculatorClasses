@@ -23,3 +23,18 @@ class Data:
         self.workbook.save(DATA)
         self.data = list(self.sheet.values)
         return data_index
+
+    def getPhaseName(self, index):
+        e_data = list(self.sheet.values)
+        fluid_name = e_data[index][1]
+        # Set the fluid name
+        print(fluid_name)
+        return fluid_name
+
+    def getViscosity(self, index):
+        e_data = list(self.sheet.values)
+        print(index)
+        viscosity = float(e_data[index][3])
+        # Set the fluid name
+        print(viscosity)
+        return viscosity

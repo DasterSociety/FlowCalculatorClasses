@@ -3,6 +3,8 @@
 import customtkinter as ctk
 from PIL import Image, ImageTk
 
+from functions.system_values import SystemValuesFunction
+
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("dark-blue")
 
@@ -28,6 +30,9 @@ class App(ctk.CTk):
         self.geometry(f"{size[0]}x{size[1]}")
         self.minsize(size[0], size[1])
 
+        # Create the instance of the System
+        self.system = SystemValuesFunction()
+
         # Open image
         image_original = Image.open("background.jpg")
         resized_image = image_original.resize((size[0], size[1]))
@@ -48,13 +53,14 @@ class App(ctk.CTk):
         self.phasesFrame = PhasesFrame(
             self.menuFrame, (0, 0), "PHASES FRAME", self.dataFrame
         )
-        # Expected Values Frame
-        self.expectedFrame = ExpectedValuesFrame(self.menuFrame, "THEORETICAL VALUES")
-
         # System values Frame
         self.systemValues = SystemValues(self.menuFrame, "SYSTEM VALUES")
+        # Expected Values Frame
+        self.expectedFrame = ExpectedValuesFrame(
+            self.menuFrame, "THEORETICAL VALUES", self.systemValues, self.system
+        )
         # Results FRAME
-        self.resultsFrame = ResultsFrame(self.menuFrame, "RESULTS")
+        self.resultsFrame = ResultsFrame(self.menuFrame, "RESULTS", self.system)
         # ADD LOGO
         self.logoFrame = LogoLabel(self.menuFrame, my_logo)
 
