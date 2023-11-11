@@ -45,4 +45,4 @@ class App(ctk.CTk):
         self.mainloop()
 
 
-App("Droplet Generator Calculator ctk", (900, 800))
+App("Droplet Generator Calculator ctk", (900, 700))
