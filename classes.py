@@ -10,6 +10,7 @@ from ui import (
     BackGroundFrame,
     DataFrame,
     ExpectedValuesFrame,
+    LogoLabel,
     MainFrame,
     PhasesFrame,
     ResultsFrame,
@@ -32,6 +33,8 @@ class App(ctk.CTk):
         resized_image = image_original.resize((size[0], size[1]))
         image_tk = ImageTk.PhotoImage(resized_image)
 
+        # Open Logo
+        my_logo = ctk.CTkImage(Image.open("Logo.png"), size=(60, 45))
         # Created the canvas
         self.canvas = BackGroundFrame(self, image_tk)
 
@@ -48,8 +51,10 @@ class App(ctk.CTk):
         self.systemValues = SystemValues(self.menuFrame, "SYSTEM VALUES")
         # Results FRAME
         self.resultsFrame = ResultsFrame(self.menuFrame, "RESULTS")
+        # ADD LOGO
+        self.logoFrame = LogoLabel(self.menuFrame, my_logo)
 
         self.mainloop()
 
 
-App("Droplet Generator Calculator ctk", (900, 700))
+App("FLOW FOCUSING SYSTEM CALCULATOR", (800, 600))

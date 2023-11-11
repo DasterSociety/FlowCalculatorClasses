@@ -5,7 +5,7 @@ import customtkinter as ctk
 class ExpectedValuesFrame(ctk.CTkFrame):
     def __init__(self, parent, name):
         super().__init__(parent)
-        self.grid(row=1, column=0, padx=10, pady=10)
+        self.grid(row=1, column=0, rowspan=2, padx=10, pady=10)
 
         self.create_widgets(name)
 
