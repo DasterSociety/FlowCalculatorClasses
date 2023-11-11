@@ -1,12 +1,13 @@
 import tkinter as tk
 from tkinter import ttk
 
+import customtkinter as ctk
 import openpyxl
 
 DATA = "/Users/daster/Documents/DNT Local/OFS/Dev/FlowCalculatorClasses/DataLog.xlsx"
 
 
-class DataFrame(ttk.Frame):
+class DataFrame(ctk.CTkFrame):
     def __init__(self, parent):
         super().__init__(parent)
         self.grid(row=0, column=1, padx=10, pady=10)
@@ -20,13 +21,14 @@ class DataFrame(ttk.Frame):
         dataTreeView = ttk.Treeview(
             self, show="headings", yscrollcommand=dataScroll.set, columns=cols, height=6
         )
-        dataTreeView.column("Index", width=50)
-        dataTreeView.column("Name", width=100)
+
+        dataTreeView.column("Index", width=80)
+        dataTreeView.column("Name", width=200)
         dataTreeView.column("Density", width=100)
         dataTreeView.column("Viscosity", width=100)
 
         dataTreeView.pack()
-        dataScroll.config(command=dataTreeView.yview)
+        # dataScroll.config(command=dataTreeView.yview)
 
         self.loadData(dataTreeView)
 

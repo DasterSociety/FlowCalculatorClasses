@@ -1,18 +1,25 @@
-import tkinter as tk
-from tkinter import ttk
-
+# import tkinter as tk
+# from tkinter import ttk
+import customtkinter as ctk
 from PIL import Image, ImageTk
 
-from ui import BackGroundFrame, DataFrame, ExpectedValuesFrame, MainFrame, PhasesFrame
+from ui import (
+    BackGroundFrame,
+    DataFrame,
+    ExpectedValuesFrame,
+    MainFrame,
+    PhasesFrame,
+    ResultsFrame,
+)
 
 
-class App(tk.Tk):
+class App(ctk.CTk):
     def __init__(self, title, size):
         super().__init__()
         self.title(title)
-        style = ttk.Style(self)
-        self.tk.call("source", "forest-dark.tcl")
-        style.theme_use("forest-dark")
+        # style = ttk.Style(self)
+        # self.tk.call("source", "forest-dark.tcl")
+        # style.theme_use("forest-dark")
         self.geometry(f"{size[0]}x{size[1]}")
         self.minsize(size[0], size[1])
 
@@ -28,14 +35,14 @@ class App(tk.Tk):
         self.menuFrame = MainFrame(self)
 
         # Create the Phases Frame
-        self.phasesFrame = PhasesFrame(self.menuFrame, "Phases Frame")
+        self.phasesFrame = PhasesFrame(self.menuFrame, "PHASES FRAME")
         # Expected Values Frame
-        self.expectedFrame = ExpectedValuesFrame(self.menuFrame, "Expected Values")
+        self.expectedFrame = ExpectedValuesFrame(self.menuFrame, "THEORETICAL VALUES")
         # Data Log frame
         self.dataFrame = DataFrame(self.menuFrame)
         # RESULTS Frame
-
+        self.resultsFrame = ResultsFrame(self.menuFrame, "RESULTS")
         self.mainloop()
 
 
-App("Droplet Generator Calculator", (800, 800))
+App("Droplet Generator Calculator ctk", (900, 800))
