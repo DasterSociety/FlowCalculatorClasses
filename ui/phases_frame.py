@@ -13,7 +13,8 @@ DATA = "/Users/daster/Documents/DNT Local/OFS/Dev/FlowCalculatorClasses/DataLog.
 class PhasesFrame(ctk.CTkFrame):
     def __init__(self, parent, pos, text, frameI):
         self.root = super().__init__(parent)
-        self.grid(row=pos[0], column=pos[1], padx=10, pady=10)
+        # self.configure(fg_color="")
+        self.grid(row=pos[0], column=pos[1], padx=30, pady=(30, 10), sticky="w")
 
         self.create_widgets(text, frameI)
         # name_entry = ttk.Entry(self)
@@ -23,17 +24,24 @@ class PhasesFrame(ctk.CTkFrame):
 
     def create_widgets(self, textI, frameI):
         # Add the label
-        frame_label = ctk.CTkLabel(self, text=textI)
+        frame_label = ctk.CTkLabel(self, text=textI, font=("Century Gothic", 16))
         frame_label.grid(row=0, column=0, padx=5, pady=5, sticky="ew")
 
         # Add and Entry field
-        self.name_entry = ctk.CTkEntry(self, border_color="#005f99")
-        self.name_entry.insert(0, "Name")
+        self.name_entry = ctk.CTkEntry(
+            self, border_color="#005f99", font=("Century Gothic", 14)
+        )
+        self.name_entry.insert(
+            0,
+            "Name",
+        )
         self.name_entry.bind("<FocusIn>", lambda e: self.name_entry.delete("0", "end"))
         self.name_entry.grid(row=1, column=0, padx=5, pady=5, sticky="ew")
 
         # # Add the Density field
-        self.density_entry = ctk.CTkEntry(self, border_color="#005f99")
+        self.density_entry = ctk.CTkEntry(
+            self, border_color="#005f99", font=("Century Gothic", 14)
+        )
         self.density_entry.insert(0, "Density (kg/m^3)")
         self.density_entry.bind(
             "<FocusIn>", lambda e: self.density_entry.delete("0", "end")
@@ -41,7 +49,9 @@ class PhasesFrame(ctk.CTkFrame):
         self.density_entry.grid(row=2, column=0, padx=5, pady=5, sticky="ew")
 
         # Add the Viscosity field
-        self.viscosity_entry = ctk.CTkEntry(self, border_color="#005f99")
+        self.viscosity_entry = ctk.CTkEntry(
+            self, border_color="#005f99", font=("Century Gothic", 14)
+        )
         self.viscosity_entry.insert(0, "Viscosity (mPa * s)")
         self.viscosity_entry.bind(
             "<FocusIn>", lambda e: self.viscosity_entry.delete("0", "end")
@@ -50,7 +60,10 @@ class PhasesFrame(ctk.CTkFrame):
 
         # Add the Insert button
         insert_button = ctk.CTkButton(
-            self, text="Insert", command=lambda: self.InsertRow(frameI)
+            self,
+            text="INSERT",
+            font=("Century Gothic", 14),
+            command=lambda: self.InsertRow(frameI),
         )
         insert_button.grid(row=4, column=0, padx=5, pady=5, sticky="nsew")
 

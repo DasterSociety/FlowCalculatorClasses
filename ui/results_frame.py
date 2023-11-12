@@ -9,13 +9,13 @@ class ResultsFrame(ctk.CTkFrame):
     def __init__(self, parent, name, system):
         super().__init__(parent)
         self.configure(border_width=2, border_color="green")
-        self.grid(row=1, column=2, padx=10, pady=10)
+        self.grid(row=1, column=2, padx=10, pady=35, sticky="ew")
 
         self.create_widgets(name, system)
 
     def create_widgets(self, name, system):
         # Add the label
-        frame_label = ctk.CTkLabel(self, text=name)
+        frame_label = ctk.CTkLabel(self, text=name, font=("Century Gothic", 16))
         frame_label.grid(row=0, column=0, columnspan=2, padx=5, pady=5, sticky="ew")
 
         # Add the Qc Results Label fields

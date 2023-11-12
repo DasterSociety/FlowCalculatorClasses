@@ -9,7 +9,7 @@ from functions.data import Data
 class DataFrame(ctk.CTkFrame):
     def __init__(self, parent, pos):
         super().__init__(parent)
-        self.grid(row=pos[0], column=pos[1], columnspan=2, padx=10, pady=10)
+        self.grid(row=pos[0], column=pos[1], columnspan=2, padx=5, pady=5)
 
         self.createWidgets()
 

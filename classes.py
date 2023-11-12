@@ -12,6 +12,7 @@ from ui import (
     BackGroundFrame,
     DataFrame,
     ExpectedValuesFrame,
+    FigureLabel,
     LogoLabel,
     MainFrame,
     PhasesFrame,
@@ -27,6 +28,7 @@ class App(ctk.CTk):
         # style = ttk.Style(self)
         # self.tk.call("source", "forest-dark.tcl")
         # style.theme_use("forest-dark")
+        # self.wm_attributes("-transparentcolor", "blue")
         self.geometry(f"{size[0]}x{size[1]}")
         self.minsize(size[0], size[1])
 
@@ -39,32 +41,38 @@ class App(ctk.CTk):
         image_tk = ImageTk.PhotoImage(resized_image)
 
         # Open Logo
-        my_logo = ctk.CTkImage(Image.open("Logo.png"), size=(60, 45))
+        my_logo = ctk.CTkImage(Image.open("Logo.png"), size=(80, 65))
+
+        # Open Figure
+        fig = ctk.CTkImage(Image.open("FFS.png"), size=(350, 190))
+
         # Created the canvas
         self.canvas = BackGroundFrame(self, image_tk)
 
         # Create the Main Frame
-        self.menuFrame = MainFrame(self)
+        # self.menuFrame = MainFrame(self)
 
         # Data Log frame
-        self.dataFrame = DataFrame(self.menuFrame, (0, 1))
+        self.dataFrame = DataFrame(self, (0, 1))
 
         # Create the Phases Frame
         self.phasesFrame = PhasesFrame(
-            self.menuFrame, (0, 0), "PHASES FRAME", self.dataFrame
+            self, (0, 0), "Insert Fluid Properties", self.dataFrame
         )
         # System values Frame
-        self.systemValues = SystemValues(self.menuFrame, "SYSTEM VALUES")
+        self.systemValues = SystemValues(self, "Current System")
         # Expected Values Frame
         self.expectedFrame = ExpectedValuesFrame(
-            self.menuFrame, "THEORETICAL VALUES", self.systemValues, self.system
+            self, "Set Constant Values", self.systemValues, self.system
         )
         # Results FRAME
-        self.resultsFrame = ResultsFrame(self.menuFrame, "RESULTS", self.system)
+        self.resultsFrame = ResultsFrame(self, "RESULTS", self.system)
         # ADD LOGO
-        self.logoFrame = LogoLabel(self.menuFrame, my_logo)
+        self.logoFrame = LogoLabel(self, (3, 2), (10, 10), "es", my_logo)
+
+        self.figureFrame = FigureLabel(self, (3, 0), (100, (5, 10)), "sw", fig)
 
         self.mainloop()
 
 
-App("FLOW FOCUSING SYSTEM CALCULATOR", (800, 600))
+App("FLOW-FOCUSING SYSTEM CALCULATOR", (750, 740))

@@ -9,23 +9,27 @@ from functions.data import Data
 class ExpectedValuesFrame(ctk.CTkFrame):
     def __init__(self, parent, name, frameI, system):
         super().__init__(parent)
-        self.grid(row=1, column=0, rowspan=2, padx=10, pady=10)
+        self.grid(row=1, column=0, rowspan=2, padx=30, pady=10, sticky="w")
 
         self.create_widgets(name, frameI, system)
 
     def create_widgets(self, name, frameI, system):
         # Add the label
-        frame_label = ctk.CTkLabel(self, text=name)
-        frame_label.grid(row=0, column=0, padx=5, pady=5, sticky="ew")
+        frame_label = ctk.CTkLabel(self, text=name, font=("Century Gothic", 16))
+        frame_label.grid(row=0, column=0, padx=(10, 10), pady=10, sticky="ew")
 
         # Add the Capillary Number Entry field
-        self.ca_entry = ctk.CTkEntry(self, border_color="#005f99")
+        self.ca_entry = ctk.CTkEntry(
+            self, border_color="#005f99", font=("Century Gothic", 14)
+        )
         self.ca_entry.insert(0, "Capillary Number")
         self.ca_entry.bind("<FocusIn>", lambda e: self.ca_entry.delete("0", "end"))
         self.ca_entry.grid(row=1, column=0, padx=5, pady=5, sticky="ew")
 
         # Add the Surface Tension Entry field
-        self.surface_entry = ctk.CTkEntry(self, border_color="#005f99")
+        self.surface_entry = ctk.CTkEntry(
+            self, border_color="#005f99", font=("Century Gothic", 14)
+        )
         self.surface_entry.insert(0, "Surface Tension (N/m)")
         self.surface_entry.bind(
             "<FocusIn>", lambda e: self.surface_entry.delete("0", "end")
@@ -33,7 +37,9 @@ class ExpectedValuesFrame(ctk.CTkFrame):
         self.surface_entry.grid(row=2, column=0, padx=5, pady=5, sticky="ew")
 
         # Add the Velocity Ratio Entry field
-        self.vel_ratio_entry = ctk.CTkEntry(self, border_color="#005f99")
+        self.vel_ratio_entry = ctk.CTkEntry(
+            self, border_color="#005f99", font=("Century Gothic", 14)
+        )
         self.vel_ratio_entry.insert(0, "Uc/Ud")
         self.vel_ratio_entry.bind(
             "<FocusIn>", lambda e: self.vel_ratio_entry.delete("0", "end")
@@ -41,7 +47,9 @@ class ExpectedValuesFrame(ctk.CTkFrame):
         self.vel_ratio_entry.grid(row=3, column=0, padx=5, pady=5, sticky="ew")
 
         # Select the Fluid Index
-        self.fluid_index_entry = ctk.CTkEntry(self, border_color="#005f99")
+        self.fluid_index_entry = ctk.CTkEntry(
+            self, border_color="#005f99", font=("Century Gothic", 14)
+        )
         self.fluid_index_entry.insert(0, "Fluid INDEX")
         self.fluid_index_entry.bind(
             "<FocusIn>", lambda e: self.fluid_index_entry.delete("0", "end")
@@ -49,7 +57,9 @@ class ExpectedValuesFrame(ctk.CTkFrame):
         self.fluid_index_entry.grid(row=4, column=0, padx=5, pady=5, sticky="ew")
 
         # Entry uChannel width
-        self.channel_width_entry = ctk.CTkEntry(self, border_color="#005f99")
+        self.channel_width_entry = ctk.CTkEntry(
+            self, border_color="#005f99", font=("Century Gothic", 14)
+        )
         self.channel_width_entry.insert(0, "Channel width (µm)")
         self.channel_width_entry.bind(
             "<FocusIn>", lambda e: self.channel_width_entry.delete("0", "end")
@@ -58,7 +68,10 @@ class ExpectedValuesFrame(ctk.CTkFrame):
 
         # Add the SET/CALCULATE button
         set_button = ctk.CTkButton(
-            self, text="SET", command=lambda: self.SetValues(frameI, system)
+            self,
+            text="SET",
+            font=("Century Gothic", 14),
+            command=lambda: self.SetValues(frameI, system),
         )
         set_button.grid(row=6, column=0, padx=5, pady=5, sticky="nsew")
 
